@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <p>{{ msg }}hahahah</p>
+    <p v-text="msg"></p>
+    <div v-html="html">
+        hhhhhhh
+        <input type="text">
+    </div>
+</div>
+
+<script src="js/vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            msg: '今天的天气很好！',
+            html: '<input type="date"><input type="color">'
+        }
+    });
+</script>
+</body>
+</html>
