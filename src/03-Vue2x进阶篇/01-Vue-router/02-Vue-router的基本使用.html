@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="bs/css/bootstrap.css">
+    <style>
+        body {
+            background-color: #e8e8e8;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="row">
+        <div class="col-xs-8 col-xs-offset-2">
+            <div class="page-header">
+                <h1>IT666教育</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-2 col-xs-offset-2">
+            <div class="list-group">
+                <router-link class="list-group-item" :to="{name: 'h5'}">HTML5</router-link>
+                <router-link class="list-group-item" :to="{name: 'java'}">Java</router-link>
+                <router-link class="list-group-item" to="/python">Python</router-link>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="panel">
+                <div class="panel-body">
+                    <router-view></router-view>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<template id="h5">
+    <div>
+        <h2>HTML5学院</h2>
+        <p>掌握面向未来的神技</p>
+        <img src="img/h5.jpg" width="250">
+        <div>
+            <ul class="nav nav-tabs">
+                <router-link to="/h5/basic">基础</router-link>
+                <router-link to="/h5/big">大神</router-link>
+            </ul>
+            <div class="tab-content">
+                <router-view></router-view>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template id="basic">
+    <div>
+        <h3>基础</h3>
+        <p>快速入门HTML5</p>
+        <img src="img/h5.jpg" width="150">
+    </div>
+</template>
+
+<template id="big">
+    <div>
+        <h3>大神</h3>
+        <p>精通HTML5</p>
+        <img src="img/h5.jpg" width="150">
+    </div>
+</template>
+
+<template id="java">
+    <div>
+        <h2>Java学院</h2>
+        <p>掌握面向未来的神技</p>
+        <img src="img/java.jpg" width="250">
+    </div>
+</template>
+
+<template id="python">
+    <div>
+        <h2>python学院</h2>
+        <p>掌握面向未来的神技</p>
+        <img src="img/python.jpg" width="250">
+    </div>
+</template>
+
+<script src="js/vue.js"></script>
+<script src="js/vue-router.js"></script>
+<script>
+
+    // 1.创建组件
+    const html5 = Vue.extend({
+        template: '#h5'
+    });
+
+    const basic = Vue.extend({
+        template: '#basic'
+    });
+
+    const big = Vue.extend({
+        template: '#big'
+    });
+
+    const java = Vue.extend({
+        template: '#java'
+    });
+
+    const python = Vue.extend({
+        template: '#python'
+    });
+
+    // 2. 定义路由
+    const routes = [
+        {
+            path: '/h5',
+            name: 'h5',
+            component: html5,
+            children: [
+                {path: 'basic', component: basic},
+                {path: 'big', component: big},
+                // 配置根路由
+                {path: '/', redirect: 'basic'}
+            ]
+        },
+        {path: '/java', component: java, name: 'java'},
+        {path: '/python', component: python, name: 'python'},
+        // 配置根路由
+        {path: '/', redirect: '/h5'}
+    ];
+
+    // 3.创建路由实例
+    const router = new VueRouter({
+       routes
+    });
+
+    // 4.创建Vue的实例并挂载
+    new Vue({
+        router
+    }).$mount('#app')
+
+</script>
+</body>
+</html>
