@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="app">
+    <my-computer>
+        <div slot="cpu">Intel Core i8</div>
+        <img slot="gpu" src="img/img_02.jpg" width="100">
+        <div slot="memory">128G</div>
+        <input slot="hard-drive" type="color">
+    </my-computer>
+</div>
+
+<template id="my_computer">
+    <div id="main">
+        <slot name="cpu">CPU</slot>
+        <slot name="gpu">GPU</slot>
+        <slot name="memory">内存条</slot>
+        <slot name="hard-drive">硬盘</slot>
+    </div>
+</template>
+
+<script src="js/vue.js"></script>
+
+
+
+<script>
+    Vue.component('my-computer', {
+        template: '#my_computer'
+    })
+    new Vue({
+        el: '#app',
+        data: {
+            msg: '今天的天气很好！'
+        }
+    });
+</script>
+</body>
+</html>
